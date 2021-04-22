@@ -2,8 +2,6 @@ from Card import Card
 from Deck import Deck
 from Player import Player
 
-suits_symbol = {'X':'', 'BUST!':'', 'Hearts':'\u2665', 'Diamonds':'\u2666', 'Spades':'\u2660', 'Clubs':'\u2663'}
-
 
 class Gameplay:
 
@@ -65,12 +63,12 @@ class Gameplay:
         print('\n'*50)
         print(f"{self.dealer.name}: ")
         for card in self.dealer.hand:
-            print(card.rank + suits_symbol[card.suit] + ' ', end='')
+            print(card.rank + Card.suits_symbol[card.suit] + ' ', end='')
         print('\n'*3)
         for contestant in self.list_of_players:
             print(f"{contestant.name}: ")
             for card in contestant.hand:
-                print(card.rank + suits_symbol[card.suit] + ' ', end='')
+                print(card.rank + Card.suits_symbol[card.suit] + ' ', end='')
             print('\n')
 
     def player_hit_or_stop(self, deck, contestant):
