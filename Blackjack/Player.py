@@ -45,19 +45,16 @@ class Player:
 
     def add_card(self,new_card):
         self.hand.append(new_card)
+        self.hand_value += new_card.value
+        if new_card.rank == 'Ace':
+            self.ace_in_hand += 1
 
-    def get_hand_value(self):
-        result = 0
-        for card in self.hand:
-            result += card.value
-            if card.rank == 'Ace':
-                self.ace_in_hand += 1
-        while 21 <= result and self.ace_in_hand:
-            result -= 10
+    def bust_check(self):
+        while 21 < self.hand_value and self.ace_in_hand:
+            self.hand_value -= 10
             self.ace_in_hand -= 1
-        if result > 21:
+        if self.hand_value > 21:
             self.add_card(Card('BUST!', 'BUST!'))
-        self.hand_value = result
 
     def remove_card(self):
         return self.hand.pop(-1)
