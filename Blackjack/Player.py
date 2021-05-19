@@ -1,5 +1,6 @@
 from Card import Card
 
+
 class Player:
 
     def __init__(self,name,funds=0):
@@ -7,7 +8,7 @@ class Player:
         self.funds = funds
         self.hand = []
         self.hand_value = 0
-        self.ace_in_hand = False
+        self.ace_in_hand = 0
         self.player_bet = 0
 
     def add_chips(self, contestant):
@@ -44,18 +45,16 @@ class Player:
 
     def add_card(self, new_card):
         self.hand.append(new_card)
+        self.hand_value += new_card.value
+        if new_card.rank == 'Ace':
+            self.ace_in_hand += 1
 
-    def get_hand_value(self):
-        result = 0
-        for card in self.hand:
-            result += card.value
-            if card.rank == 'Ace':
-                self.ace_in_hand = True
-        if 21 <= result <= 31 and self.ace_in_hand:
-            result -= 10
-        elif result > 21:
+    def bust_check(self):
+        while 21 < self.hand_value and self.ace_in_hand:
+            self.hand_value -= 10
+            self.ace_in_hand -= 1
+        if self.hand_value > 21:
             self.add_card(Card('BUST!', 'BUST!'))
-        self.hand_value = result
 
     def remove_card(self):
         return self.hand.pop(-1)

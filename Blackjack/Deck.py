@@ -1,9 +1,6 @@
 from Card import Card
 import random
 
-suits = ('Hearts', 'Diamonds', 'Spades', 'Clubs')
-ranks = ('Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Jack', 'Queen', 'King', 'Ace')
-
 
 class Deck:
 
@@ -12,8 +9,8 @@ class Deck:
         self.game_deck = []
         self.size = 0
 
-        for rank in ranks:
-            for suit in suits:
+        for rank in Card.ranks:
+            for suit in Card.suits:
                 for_deck = Card(suit, rank)
                 self.game_deck.append(for_deck)
                 self.size += 1

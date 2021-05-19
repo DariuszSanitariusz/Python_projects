@@ -13,8 +13,8 @@ if __name__ == '__main__':
     while game.game_on:
     game.everyone_bets()
 
-    gameplay_deck = game.preparing_deck()
-    game.starting_hands(gameplay_deck)
+    game.preparing_deck()
+    game.starting_hands(game.deck)
 
     game.dealer_hidden_card()
 
@@ -23,8 +23,8 @@ if __name__ == '__main__':
 
         while game.player_turn:
             game.display_table()
-            game.player_hit_or_stop(gameplay_deck, contestant)
-            contestant.get_hand_value()
+            game.player_hit_or_stop(game.deck, contestant)
+            contestant.bust_check()
 
             if contestant.hand_value > 21:
                 game.player_turn = False
@@ -33,8 +33,7 @@ if __name__ == '__main__':
 
     while not game.player_turn:
         game.display_table()
-        game.dealer.get_hand_value()
-        game.dealer_turn(gameplay_deck)
+        game.dealer_turn(game.deck)
 
     game.compare_players_score()
 
