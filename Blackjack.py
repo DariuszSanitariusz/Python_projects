@@ -4,12 +4,13 @@ from Gameplay import Gameplay
 Implemented game of blackjack
 '''
 
-game = Gameplay()
+if __name__ == '__main__':
+    game = Gameplay()
 
-game.get_number_of_players()
-game.adding_players()
+    game.get_number_of_players()
+    game.adding_players()
 
-while game.game_on:
+    while game.game_on:
     game.everyone_bets()
 
     gameplay_deck = game.preparing_deck()

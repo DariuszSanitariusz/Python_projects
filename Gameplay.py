@@ -1,6 +1,6 @@
-from Card import Card
-from Deck import Deck
-from Player import Player
+import Card
+import Deck
+import Player
 
 suits_symbol = {'X':'', 'BUST!':'', 'Hearts':'\u2665', 'Diamonds':'\u2666', 'Spades':'\u2660', 'Clubs':'\u2663'}
 
@@ -13,7 +13,7 @@ class Gameplay:
         self.list_of_players = []
         self.compare_list = []
         self.shuffle_deck = True
-        self.dealer = Player('DEALER')
+        self.dealer = Player.Player('DEALER')
         self.player_turn = True
         self.hidden_card = 0
         self.game_on = True
@@ -32,12 +32,12 @@ class Gameplay:
     def adding_players(self):
         for i in range(self.number_of_players):
             human = input(f"Please enter your name, player {i+1}: ")
-            player = Player(human)
+            player = Player.Player(human)
             player.add_chips(human)
             self.list_of_players.append(player)
 
     def preparing_deck(self):
-        deck = Deck()
+        deck = Deck.Deck()
         if len(deck) < 26 or self.shuffle_deck:
             deck.shuffle()
             self.shuffle_deck = False
@@ -56,7 +56,7 @@ class Gameplay:
     def dealer_hidden_card(self):
         if self.player_turn:
             self.hidden_card = self.dealer.remove_card()
-            self.dealer.add_card(Card('X', 'X'))
+            self.dealer.add_card(Card.Card('X', 'X'))
         else:
             self.dealer.remove_card()
             self.dealer.add_card(self.hidden_card)

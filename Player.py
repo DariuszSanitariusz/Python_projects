@@ -42,7 +42,7 @@ class Player:
                     self.withdrawal_for_bet(amount)
                     break
 
-    def add_card(self,new_card):
+    def add_card(self, new_card):
         self.hand.append(new_card)
 
     def get_hand_value(self):
